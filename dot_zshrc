@@ -1,0 +1,77 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.zsh_history
+HISTSIZE=3500
+SAVEHIST=3500
+setopt autocd beep extendedglob nomatch notify
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/schlafer/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+
+
+# flatpak
+export XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share"
+
+
+
+# zoxide
+eval "$(zoxide init zsh)"
+
+alias cd="z"
+
+
+# Use eza instead of ls
+alias ls="eza --color=auto --icons --group-directories-first"
+
+# Variants
+alias ll="eza -lh --icons --group-directories-first"     # long + human sizes
+alias la="eza -a --icons --group-directories-first"      # show hidden
+alias lla="eza -lha --icons --group-directories-first"   # long + all
+alias lt="eza --tree --level=2 --icons --group-directories-first"  # tree view
+alias lg="eza -lha --git --icons --group-directories-first"        # show git info
+
+# Yazi shortcut
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+
+# Helix
+#alias hx="helix"
+
+# Mise
+# eval "$(~/.local/bin/mise activate zsh)"
+eval "$(mise activate zsh)"
+export PATH="$HOME/.local/share/mise/shims:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+# UV
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
+
+. "$HOME/.local/share/../bin/env"
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+#psql
+export PSQLRC="$HOME/.config/psql/psqlrc"
+
+# pnpm
+export PNPM_HOME="/home/schlafer/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+
+#rust
+export PATH="$HOME/.cargo/bin:$PATH"
