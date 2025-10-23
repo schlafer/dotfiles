@@ -1,5 +1,5 @@
 #theme = "catppuccin_mocha_transparent"
-theme = "base16_default"
+theme = "flexoki_light"
 
 [editor]
 color-modes = true
