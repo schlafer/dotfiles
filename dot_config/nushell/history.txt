@@ -1,0 +1,32 @@
+clear
+fastfetch
+ls
+ls | where size > 1kb | sort-by modified
+http get https://github.com/jdx/mise | get license
+pwd
+ls
+z projects
+zoxide projects
+zoxide /projects
+clea
+clear
+ls
+exit
+$nu.env-path
+cd /home/schlafer/.config/nushell/
+ls
+hx config.nu
+hx env.nu
+hx config.nu
+z projects
+zoxide Projects
+zoxide ..
+zoxide
+z projects
+ls
+clear
+z projects
+ls
+ls -a
+ls -l
+z ~
