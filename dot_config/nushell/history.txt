@@ -30,3 +30,6 @@ ls
 ls -a
 ls -l
 z ~
+clear
+tmux
+exit
