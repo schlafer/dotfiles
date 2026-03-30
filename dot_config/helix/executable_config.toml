@@ -1,5 +1,5 @@
-#theme = "catppuccin_mocha_transparent"
-theme = "flexoki_light"
+theme = "catppuccin_mocha_transparent"
+#theme = "ao"
 
 [editor]
 color-modes = true
