@@ -22,15 +22,16 @@ file-types = ["templ"]
 roots = ["go.work", "go.mod"]
 comment-token = "//"
 indent = { tab-width = 2, unit = "  " }
-language-servers = [ "templ" ]
+language-servers = ["templ"]
+
 
 [[language]]
 name = "markdown"
 auto-format = true
 soft-wrap.enable = true
 soft-wrap.wrap-at-text-width = true
-language-servers= ["marksman"]
-formatter = { command = "dprint", args = ["fmt", "--stdin", "{buffer_path}"]}
+language-servers = ["marksman"]
+formatter = { command = "dprint", args = ["fmt", "--stdin", "%{buffer_path}"] }
 
 [language.auto-pairs]
 '(' = ')'
@@ -42,6 +43,7 @@ formatter = { command = "dprint", args = ["fmt", "--stdin", "{buffer_path}"]}
 '‘' = '’'
 '«' = '»'
 '“' = '”'
+
 
 [[language]]
 name = "rust"
@@ -57,7 +59,7 @@ block-comment-tokens = [
   { start = "/**", end = "*/" },
   { start = "/*!", end = "*/" },
 ]
-language-servers = [ "rust-analyzer" ]
+language-servers = ["rust-analyzer"]
 indent = { tab-width = 4, unit = "    " }
 persistent-diagnostic-sources = ["rustc", "clippy"]
 
@@ -76,17 +78,39 @@ inlayHints.typeHints.hideClosureInitialization = false
 watcher = "server"
 
 
+# 1. Define the basedpyright language server
+[language-server.basedpyright]
+command = "basedpyright-langserver"
+args = ["--stdio"]
+
+# 2. Configure the updated Python settings
 [[language]]
 name = "python"
 scope = "source.python"
 injection-regex = "py(thon)?"
-file-types = ["py", "pyi", "py3", "pyw", "ptl", "rpy", "cpy", "ipy", "pyt", { glob = ".python_history" }, { glob = ".pythonstartup" }, { glob = ".pythonrc" }, { glob = "*SConstruct" }, { glob = "*SConscript" }, { glob = "*sconstruct" }]
+file-types = [
+  "py",
+  "pyi",
+  "py3",
+  "pyw",
+  "ptl",
+  "rpy",
+  "cpy",
+  "ipy",
+  "pyt",
+  { glob = ".python_history" },
+  { glob = ".pythonstartup" },
+  { glob = ".pythonrc" },
+  { glob = "*SConstruct" },
+  { glob = "*SConscript" },
+  { glob = "*sconstruct" },
+]
 shebangs = ["python", "uv"]
 roots = ["pyproject.toml", "setup.py", "poetry.lock", "pyrightconfig.json"]
 comment-token = "#"
-language-servers = ["ruff", "pylsp"]
-# TODO: pyls needs utf-8 offsets
+language-servers = ["ruff", "basedpyright"]
 indent = { tab-width = 4, unit = "    " }
+
 
 [[language]]
 name = "sql"

@@ -1,5 +1,4 @@
-theme = "catppuccin_mocha_transparent"
-#theme = "ao"
+theme = "base16_terminal"
 
 [editor]
 color-modes = true
@@ -22,28 +21,25 @@ git-ignore = false
 [editor.statusline]
 left = ["mode", "spinner", "diagnostics", "workspace-diagnostics"]
 center = [
-    "file-encoding",
-    "file-type",
-    "separator",
-    "file-name",
-    "read-only-indicator",
-    "separator",
-    "spacer",
-    "version-control",
-    "file-modification-indicator",
+  "file-encoding",
+  "file-type",
+  "separator",
+  "file-name",
+  "read-only-indicator",
+  "separator",
+  "spacer",
+  "version-control",
+  "file-modification-indicator",
 ]
-right = [
-    "position",
-    "position-percentage",
-]
+right = ["position", "position-percentage"]
 
-#mode.normal = "NORMAL"
-#mode.insert = "INSERT"
-#mode.select = "SELECT"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
 
 [editor.indent-guides]
 render = true
-character = "╎" 
+character = "╎"
 skip-levels = 1
 
 [editor.soft-wrap]
@@ -61,11 +57,11 @@ C-l = "jump_view_right"
   "extend_to_line_bounds",
   "delete_selection",
   "move_line_up",
-  "paste_before"
+  "paste_before",
 ]
 "A-j" = [
   "extend_to_line_bounds",
   "delete_selection",
   "move_line_down",
-  "paste_before"
+  "paste_before",
 ]
