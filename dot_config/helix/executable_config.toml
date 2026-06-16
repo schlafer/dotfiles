@@ -1,13 +1,15 @@
-theme = "base16_terminal"
+theme = "base16_default"
 
 [editor]
 color-modes = true
+scrolloff = 9999
 completion-replace = true
 cursorcolumn = false
 cursorline = true
 line-number = "relative"
-#rulers = [80]
 true-color = true
+auto-format = true
+gutters = ["diagnostics", "line-numbers", "spacer", "diff"]
 
 [editor.cursor-shape]
 insert = "bar"
@@ -18,32 +20,13 @@ select = "underline"
 hidden = false
 git-ignore = false
 
-[editor.statusline]
-left = ["mode", "spinner", "diagnostics", "workspace-diagnostics"]
-center = [
-  "file-encoding",
-  "file-type",
-  "separator",
-  "file-name",
-  "read-only-indicator",
-  "separator",
-  "spacer",
-  "version-control",
-  "file-modification-indicator",
-]
-right = ["position", "position-percentage"]
-
-mode.normal = "NORMAL"
-mode.insert = "INSERT"
-mode.select = "SELECT"
-
 [editor.indent-guides]
 render = true
 character = "╎"
-skip-levels = 1
 
 [editor.soft-wrap]
 enable = true
+wrap-indicator = ''
 
 [keys.normal]
 C-h = "jump_view_left"
@@ -51,8 +34,6 @@ C-j = "jump_view_down"
 C-k = "jump_view_up"
 C-l = "jump_view_right"
 "K" = "insert_newline"
-
-# Move line up/down using A-k, A-j
 "A-k" = [
   "extend_to_line_bounds",
   "delete_selection",
@@ -64,4 +45,11 @@ C-l = "jump_view_right"
   "delete_selection",
   "move_line_down",
   "paste_before",
+]
+C-g = [
+":new",
+":insert-output lazygit",
+":buffer-close!",
+":redraw",
+":rla"
 ]

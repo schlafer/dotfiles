@@ -22,7 +22,7 @@ file-types = ["templ"]
 roots = ["go.work", "go.mod"]
 comment-token = "//"
 indent = { tab-width = 2, unit = "  " }
-language-servers = ["templ"]
+language-servers = [ "templ" ]
 
 
 [[language]]
@@ -59,7 +59,7 @@ block-comment-tokens = [
   { start = "/**", end = "*/" },
   { start = "/*!", end = "*/" },
 ]
-language-servers = ["rust-analyzer"]
+language-servers = [ "rust-analyzer" ]
 indent = { tab-width = 4, unit = "    " }
 persistent-diagnostic-sources = ["rustc", "clippy"]
 
@@ -88,23 +88,7 @@ args = ["--stdio"]
 name = "python"
 scope = "source.python"
 injection-regex = "py(thon)?"
-file-types = [
-  "py",
-  "pyi",
-  "py3",
-  "pyw",
-  "ptl",
-  "rpy",
-  "cpy",
-  "ipy",
-  "pyt",
-  { glob = ".python_history" },
-  { glob = ".pythonstartup" },
-  { glob = ".pythonrc" },
-  { glob = "*SConstruct" },
-  { glob = "*SConscript" },
-  { glob = "*sconstruct" },
-]
+file-types = ["py", "pyi", "py3", "pyw", "ptl", "rpy", "cpy", "ipy", "pyt", { glob = ".python_history" }, { glob = ".pythonstartup" }, { glob = ".pythonrc" }, { glob = "*SConstruct" }, { glob = "*SConscript" }, { glob = "*sconstruct" }]
 shebangs = ["python", "uv"]
 roots = ["pyproject.toml", "setup.py", "poetry.lock", "pyrightconfig.json"]
 comment-token = "#"
