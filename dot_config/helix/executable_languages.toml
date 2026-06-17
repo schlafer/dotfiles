@@ -15,14 +15,14 @@ parameterNames = true
 rangeVariableTypes = true
 
 
-[[language]]
-name = "templ"
-scope = "source.templ"
-file-types = ["templ"]
-roots = ["go.work", "go.mod"]
-comment-token = "//"
-indent = { tab-width = 2, unit = "  " }
-language-servers = [ "templ" ]
+# [[language]]
+# name = "templ"
+# scope = "source.templ"
+# file-types = ["templ"]
+# roots = ["go.work", "go.mod"]
+# comment-token = "//"
+# indent = { tab-width = 2, unit = "  " }
+# language-servers = [ "templ" ]
 
 
 [[language]]
@@ -95,6 +95,19 @@ comment-token = "#"
 language-servers = ["ruff", "basedpyright"]
 indent = { tab-width = 4, unit = "    " }
 
+[[language]]
+name = "c"
+scope = "source.c"
+file-types = ["c", "h"]
+language-servers = ["clangd"]
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "cpp"
+scope = "source.cpp"
+file-types = ["cc", "cpp", "cxx", "hpp", "hh", "hxx"]
+language-servers = ["clangd"]
+indent = { tab-width = 4, unit = "    " }
 
 [[language]]
 name = "sql"
