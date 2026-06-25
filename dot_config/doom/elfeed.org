@@ -1,0 +1,7 @@
+* Feeds                                                              :elfeed:
+** Blogs                                                              :blog:
+*** [[https://xn--gckvb8fzb.com/index.xml][マリウス/Marius]]
+*** [[https://lukesmith.xyz/index.xml][Luke Smith]]
+*** [[https://blog.parasrah.com/index.xml][Paras Rah]]
+*** [[https://www.rly0nheart.com/index.xml][rly0nheart]]
+*** [[https://drewdevault.com/blog/index.xml][Drew Devault]]
