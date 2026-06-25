@@ -54,8 +54,3 @@
 ;; (unpin! t)
 (package! catppuccin-theme)
 (package! gruber-darker-theme)
-(use-package chezmoi
-  :ensure t
-  :bind
-  ("C-c c e" . chezmoi-find)
-  ("C-c c s" . chezmoi-sync))
