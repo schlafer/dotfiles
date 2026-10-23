@@ -1,0 +1,19 @@
+[tools]
+bun = "latest"
+claude = "latest"
+codex = "latest"
+deno = "latest"
+gemini = { version = "latest", allow_builds = ["@github/keytar", "node-pty"] }
+gh = "latest"
+go = "1.27.3"
+java = "latest"
+node = "lts"
+rust = "stable"
+usage = "latest"
+yarn = "latest"
+zig = "latest"
+zls = "latest"
+
+[settings.upgrade]
+# Prevent automatic pruning during upgrades.
+auto_prune = false
