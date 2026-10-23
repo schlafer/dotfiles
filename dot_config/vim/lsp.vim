@@ -15,6 +15,12 @@ let lspServers = [
       \   filetype: ['go', 'gomod', 'gowork'],
       \   path: 'gopls',
       \   args: []
+      \ },
+      \ #{
+      \   name: 'basedpyright',
+      \   filetype: ['python'],
+      \   path: 'basedpyright-langserver',
+      \   args: ['--stdio']
       \ }
       \ ]
 
@@ -35,6 +41,7 @@ inoremap <silent> <C-Space> <C-x><C-o>
 " Formatting (safe ones)
 autocmd BufWritePre *.go LspDocumentFormatSync
 autocmd BufWritePre *.rs LspDocumentFormatSync
+autocmd BufWritePre *.py LspDocumentFormatSync
 
 " Diagnostic signs
 autocmd User LspSetup call LspOptionsSet(#{

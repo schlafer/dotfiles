@@ -1,6 +1,7 @@
-theme = "term16_dark"
+theme = "gruber-darker"
 
 [editor]
+rulers = [80]
 color-modes = true
 scrolloff = 9999
 completion-replace = true
@@ -53,3 +54,7 @@ C-g = [
 ":redraw",
 ":rla"
 ]
+
+[keys.normal.space]
+w = ":write"
+q = ":quit"

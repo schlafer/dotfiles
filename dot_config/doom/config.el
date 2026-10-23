@@ -1,14 +1,43 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+(blink-cursor-mode -1)
 
-(setq user-full-name "Sazid Mahmud"
-      user-mail-address "sazidmahmud5@gmail.com")
+(setq doom-font (font-spec :family "Aporetic Sans Mono" :size 22 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "Aporetic Sans" :size 22)
+      doom-symbol-font (font-spec :family "Symbols Nerd Font Mono" :size 22)
 
-(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 20 :weight 'medium)
-      doom-variable-pitch-font (font-spec :family "Iosevka Nerd Font" :size 20))
+      ;; Visual padding for clean reading
+      line-spacing 0.12)
 
-(setq doom-theme 'gruber-darker)
+;; Handle Bengali script native rendering
+(defun my-setup-bangla-font ()
+  "Set up a dedicated font for the Bengali script."
+  (when (member "Noto Sans Bengali" (font-family-list))
+    (set-fontset-font t 'bengali (font-spec :family "Noto Sans Bengali" :size 22))))
+
+(add-hook 'after-setting-font-hook #'my-setup-bangla-font)
+
+(defun +dashboard-draw-ascii-banner-fn ()
+  (propertize
+   (string-join
+    '(" _____ __  __    _    ____ ____  "
+      "| ____|  \\/  |  / \\  / ___/ ___| "
+      "|  _| | |\\/| | / _ \\| |   \\___ \\ "
+      "| |___| |  | |/ ___ \\ |___ ___) |"
+      "|_____|_|  |_/_/   \\_\\____|____/ ")
+    "\n")
+   'face '+dashboard-banner))
+
+;;  ██████╗  ███████╗  ██████╗ ██╗  ██╗ ██╗       █████╗  ███████╗ ███████╗ ██████╗
+;; ██╔═══██╗ ██╔════╝ ██╔════╝ ██║  ██║ ██║      ██╔══██╗ ██╔════╝ ██╔════╝ ██╔══██╗
+;; ██║██╗██║ ███████╗ ██║      ███████║ ██║      ███████║ █████╗   █████╗   ██████╔╝
+;; ██║██║██║ ╚════██║ ██║      ██╔══██║ ██║      ██╔══██║ ██╔══╝   ██╔══╝   ██╔══██╗
+;; ╚█║████╔╝ ███████║ ╚██████╗ ██║  ██║ ███████╗ ██║  ██║ ██║      ███████╗ ██║  ██║
+;;  ╚╝╚═══╝  ╚══════╝  ╚═════╝ ╚═╝  ╚═╝ ╚══════╝ ╚═╝  ╚═╝ ╚═╝      ╚══════╝ ╚═╝  ╚═╝
+
+;; (setq fancy-splash-image "~/.config/doom/splash-images/emacs-e.svg")
+
+(setq doom-theme 'modus-flexoki-light)
 
 (setq display-line-numbers-type 'relative)
 
@@ -84,57 +113,23 @@
 (setq user-mail-address "sazidmahmud5@gmail.com"
       user-full-name "Sazid Mahmud")
 
-;; ==========================================
-;; MAIL & ORG INTEGRATION (mu4e + gmail + org)
-;; ==========================================
+;; Alt-o toggles buffer windows
+(define-key global-map (kbd "M-o") 'other-window)
 
-(after! mu4e
-  (setq mu4e-mu-binary "/usr/bin/mu"
-        mu4e-maildir "~/Mail"                     ; Must match your ~/.mbsyncrc Path
-        mu4e-get-mail-command "mbsync -a"         ; Syncs all channels
-        mu4e-update-interval (* 10 60)             ; Auto-sync every 5 minutes
-        mu4e-change-filenames-when-moving t)      ; Keeps mbsync database happy
+;; j-k navigation respects softwrap texts. 5-j/5-k does regular 5 line jumps as usual.
+(after! evil
+  (evil-define-motion my/evil-next-line (count)
+    :type line
+    (if count
+        (evil-next-line count)
+      (evil-next-visual-line 1)))
 
-  ;; Folder navigation shortcuts
-  (setq mu4e-maildir-shortcuts
-        '((:maildir "/Inbox"             :key ?i)
-          (:maildir "/[Gmail]/Sent Mail" :key ?s)
-          (:maildir "/[Gmail]/Trash"     :key ?t)
-          (:maildir "/[Gmail]/Drafts"    :key ?d)
-          (:maildir "/[Gmail]/All Mail"    :key ?a)))
+  (evil-define-motion my/evil-previous-line (count)
+    :type line
+    (if count
+        (evil-previous-line count)
+      (evil-previous-visual-line 1)))
 
-  ;; Gmail Context Configuration
-  (setq mu4e-contexts
-        (list
-         (make-mu4e-context
-          :name "Gmail"
-          :match-func (lambda (msg) (when msg (string-match-p "^/Inbox\\|^/\\[Gmail\\]" (mu4e-message-field msg :maildir))))
-          :vars '((user-mail-address   . "sazidmahmud5@gmail.com")
-                  (user-full-name      . "Sazid Mahmud")
-                  (mu4e-sent-folder    . "/[Gmail]/Sent Mail")
-                  (mu4e-drafts-folder  . "/[Gmail]/Drafts")
-                  (mu4e-trash-folder   . "/[Gmail]/Trash")
-                  (mu4e-refile-folder  . "/[Gmail]/All Mail")))))
+  (map! :n "j" #'my/evil-next-line
+        :n "k" #'my/evil-previous-line))
 
-  ;; Outgoing SMTP via msmtp (More reliable than Emacs' built-in smtpmail with mbsync)
-  (setq message-send-mail-function 'message-send-mail-with-sendmail
-        sendmail-program (executable-find "msmtp")
-	message-sendmail-extra-arguments '("-t")
-        user-mail-address "sazidmahmud5@gmail.com"
-        user-full-name "Sazid Mahmud")
-
-
-  ;; --- ORG-MODE INTEGRATION ---
-  ;; Allows you to store/capture hyper-links directly to a specific email
-  (after! org
-    (setq org-mu4e-link-query-in-headers-mode nil)))
-
-;; Rich HTML email creation using Org-mode syntax
-(use-package! org-msg
-  :defer t
-  :init
-  (setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil"
-        org-msg-startup "hidestars indent inlineimages"
-        org-msg-greeting-fmt "Hi %s,\n\n"
-        org-msg-recipient-msge-ids-blk nil)
-  (add-hook 'mu4e-compose-pre-hook #'org-msg-mode))

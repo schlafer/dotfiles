@@ -21,13 +21,10 @@ eval "$(starship init zsh)"
 # flatpak
 export XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share"
 
-
-
 # zoxide
 eval "$(zoxide init zsh)"
 
 alias cd="z"
-
 
 # Use eza instead of ls
 alias ls="eza --color=auto --icons --group-directories-first"
@@ -47,10 +44,6 @@ function y() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
-
-
-# Helix
-#alias hx="helix"
 
 # Mise
 # eval "$(~/.local/bin/mise activate zsh)"
@@ -76,7 +69,26 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-
 #rust
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/schlafer/.lmstudio/bin"
+# End of LM Studio CLI section
+
+# emacs
+export PATH="$HOME/.config/emacs/bin:$PATH"
+
+# pw.x cpu
+export PATH="$HOME/Quantum/q-e-qe-7.5/bin:$PATH"
+
+# comsol
+export PATH="$HOME/Comsol/comsol64/multiphysics/bin/:$PATH"
+
+# Added by Antigravity CLI installer
+export PATH="/home/schlafer/.local/bin:$PATH"
+
+# Load local secrets if present
+[[ -r "$HOME/.config/secrets/lm-studio.env" ]] && \
+  source "$HOME/.config/secrets/lm-studio.env"
 

@@ -31,7 +31,7 @@ auto-format = true
 soft-wrap.enable = true
 soft-wrap.wrap-at-text-width = true
 language-servers = ["marksman"]
-formatter = { command = "dprint", args = ["fmt", "--stdin", "%{buffer_path}"] }
+formatter = { command = "/home/schlafer/.cargo/bin/dprint", args = ["fmt", "--stdin", "md"] }
 
 [language.auto-pairs]
 '(' = ')'
@@ -117,3 +117,12 @@ comment-token = "--"
 block-comment-tokens = { start = "/*", end = "*/" }
 indent = { tab-width = 4, unit = "    " }
 injection-regex = "sql"
+
+
+[language-server.tinymist]
+command = "tinymist"
+config = { preview.background.enabled = true, preview.background.args = ["--data-plane-host=127.0.0.1:23635", "--invert-colors=never", "--open"] }
+
+[[language]]
+name = "typst"
+language-servers = ["tinymist"]

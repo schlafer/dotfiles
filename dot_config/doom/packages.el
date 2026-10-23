@@ -52,5 +52,10 @@
 ;; (unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
-(package! catppuccin-theme)
 (package! gruber-darker-theme)
+(package! catppuccin-theme)
+(package! modus-themes)
+(package! modus-flexoki
+  :recipe (:host nil
+           :repo "https://github.com/dpassen/modus-flexoki.git"
+           :files ("*.el")))

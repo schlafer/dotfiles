@@ -18,9 +18,8 @@ $cmd_duration\
 $line_break\
 $character"""
 
-add_newline = true
+add_newline = false
 
-palette = 'tokyonight'
 
 [directory]
 style = 'bold fg:dark_blue'
@@ -29,11 +28,6 @@ truncation_length = 3
 truncation_symbol = '…/'
 truncate_to_repo = false
 
-[directory.substitutions]
-'Documents' = '󰈙'
-'Downloads' = ' '
-'Music' = ' '
-'Pictures' = ' '
 
 [git_branch]
 style = 'fg:green'
@@ -103,48 +97,4 @@ min_time = 500
 style = 'fg:gray'
 format = '[$duration]($style)'
 
-[palettes.nord]
-dark_blue = '#5E81AC'
-blue = '#81A1C1'
-teal = '#88C0D0'
-red = '#BF616A'
-orange = '#D08770'
-green = '#A3BE8C'
-yellow = '#EBCB8B'
-purple = '#B48EAD'
-gray = '#434C5E'
-black = '#2E3440'
-white='#D8DEE9'
 
-[palettes.onedark]
-dark_blue='#61afef'
-blue='#56b6c2'
-red='#e06c75'
-green='#98c379'
-purple='#c678dd'
-cyan='#56b6c2'
-orange='#be5046'
-yellow='#e5c07b'
-gray='#828997'
-white ='#abb2bf'
-black='#2c323c'
-
-[palettes.tokyonight]
-dark_blue = '#7AA2F7'
-blue = '#7DCFFF'
-teal = '#73DACA'
-red = '#F7768E'
-orange = '#FF9E64'
-green = '#9ECE6A'
-yellow = '#E0AF68'
-purple = '#BB9AF7'
-gray = '#414868'
-black = '#1A1B26'
-white = '#C0CAF5'
-
-bg = '#1A1B26'
-bg_dark = '#16161E'
-bg_highlight = '#292E42'
-terminal_black = '#15161E'
-fg_dark = '#A9B1D6'
-comment = '#565F89'
