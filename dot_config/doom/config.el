@@ -2,8 +2,8 @@
 
 (blink-cursor-mode -1)
 
-(setq doom-font (font-spec :family "Aporetic Sans Mono" :size 22 :weight 'regular)
-      doom-variable-pitch-font (font-spec :family "Aporetic Sans" :size 22)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 22 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 22)
       doom-symbol-font (font-spec :family "Symbols Nerd Font Mono" :size 22)
 
       ;; Visual padding for clean reading
@@ -37,7 +37,7 @@
 
 ;; (setq fancy-splash-image "~/.config/doom/splash-images/emacs-e.svg")
 
-(setq doom-theme 'modus-flexoki-light)
+(setq doom-theme 'doom-tokyo-night)
 
 (setq display-line-numbers-type 'relative)
 
