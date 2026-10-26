@@ -26,6 +26,9 @@ eval "$(zoxide init zsh)"
 
 alias cd="z"
 
+# bat
+alias cat="bat"
+
 # Use eza instead of ls
 alias ls="eza --color=auto --icons --group-directories-first"
 
